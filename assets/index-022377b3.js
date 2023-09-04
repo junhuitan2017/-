@@ -67,15 +67,20 @@ Error generating stack: `+o.message+`
 `,zm=Fn.div`
     position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    * > div {
+    & > div {
         margin: auto;
-        padding: 8px;
+        padding: 24px;
         border-radius: 8px;
         border: 1px solid black;
+        background: white;
         display: flex;
         flex-flow: column;
+        justify-content: center;
         align-items: center;
     }
 `,ha=()=>[...Array(3)].map(e=>[...Array(3)].map(t=>[...Array(3)].map(n=>Array(3).fill(0)))),ma=e=>{const t=Array(3).fill(0),n=Array(3).fill(0),r=Array(3).fill(0);e.forEach((l,o)=>{l.forEach((i,u)=>{t[o]+=i,n[u]+=i,o===u&&(r[0]+=i),o===3-u-1&&(r[1]+=i)})});for(let l=0;l<3;l++){if(Math.abs(t[l])===3)return t[l]/3;if(Math.abs(n[l])===3)return n[l]/3;if(Math.abs(r[l])===3)return r[l]/3}return 0},Vl=e=>{switch(e){case 1:return"〇";case-1:return"✕";default:return""}},va=(e,t,n)=>n!==0?!1:e===null?!0:e.行===t.行&&e.列===t.列,Tm=({資料:e,押すとき:t,有効独居室:n})=>ae.jsx(da,{children:e.map((r,l)=>r.map((o,i)=>typeof o=="number"?ae.jsx(pa,{children:Vl(o)},`外行${l}外列${i}`):ae.jsx(da,{children:o.map((u,s)=>u.map((c,m)=>ae.jsx(pa,{有効:va(n,{行:l,列:i},c)?"true":void 0,onClick:()=>va(n,{行:l,列:i},c)&&t({外側:{行:l,列:i},内側:{行:s,列:m}}),children:Vl(c)},`外行${l}外列${i}内行${s}内列${m}`)))},`外行${l}外列${i}`)))}),Rm=()=>{const[e,t]=nt.useState(ha()),[n,r]=nt.useState(1),[l,o]=nt.useState(0),[i,u]=nt.useState(null),s=({外側:m,内側:h})=>{const p=[...e],y=p[m.行][m.列];if(typeof y!="number"){y[h.行][h.列]=n;const w=ma(y);w!==0?(p[m.行][m.列]=w,u(null)):typeof p[h.行][h.列]!="number"?u({行:h.行,列:h.列}):u(null)}const g=ma(p.map(w=>w.map(T=>typeof T=="number"?T:0)));g!==0&&o(g),t(p),r(w=>w*-1)},c=()=>{t(ha()),o(0),u(null)};return ae.jsxs(Pm,{children:[ae.jsx(Nm,{children:"超〇✕"}),ae.jsxs("h3",{children:["今プレーヤーの動き: ",Vl(n)]}),ae.jsx(Tm,{資料:e,押すとき:s,有効独居室:i}),ae.jsx("p",{children:"The next player can only play a move at the outer cell that is corresponding to the inner cell that the previous player plays at. The outer cell will display the winner of the inner cell. Win the outer board to win the game"}),l!==0&&ae.jsx(zm,{children:ae.jsxs("div",{children:[ae.jsxs("h1",{children:["プレーヤー ",Vl(l)," の勝ちだ！"]}),ae.jsx("button",{onClick:c,children:"再開する"})]})})]})};Wo.createRoot(document.getElementById("root")).render(ae.jsx(En.StrictMode,{children:ae.jsx(Rm,{})}));
