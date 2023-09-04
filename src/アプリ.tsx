@@ -36,15 +36,20 @@ const ボードの独居室 = styled.div<{ 有効?: string }>`
 const メニュー = styled.div`
     position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    * > div {
+    & > div {
         margin: auto;
-        padding: 8px;
+        padding: 24px;
         border-radius: 8px;
         border: 1px solid black;
+        background: white;
         display: flex;
         flex-flow: column;
+        justify-content: center;
         align-items: center;
     }
 `
